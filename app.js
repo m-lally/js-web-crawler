@@ -2,10 +2,10 @@
 import WebCrawler from './WebCrawler.js'; // Assuming your provided code is in WebCrawler.js
 
 async function runCrawler() {
-  const startUrl = 'https://www.example.com'; // **CHANGE THIS TO A REAL URL YOU WANT TO CRAWL**
+  const startUrl = 'https://m-lally.github.io'; // **CHANGE THIS TO A REAL URL YOU WANT TO CRAWL**
 
   const crawler = new WebCrawler({
-    maxDepth: 1, // Limiting depth for a quick test
+    maxDepth: 5, // Limiting depth for a quick test
     maxPages: 10, // Limiting pages for a quick test
     // You can add more options here
   });
@@ -19,7 +19,7 @@ async function runCrawler() {
     console.error(`Error crawling ${errorData.url}: ${errorData.error.message}`);
   });
 
-  crawler.on('complete', ({ results, summary }) => {
+  crawler.on('complete', ({ summary }) => {
     console.log('\n--- Crawl Complete ---');
     console.log('Summary:', summary);
     // console.log('Results:', results.map(r => r.url)); // Uncomment to see all crawled URLs
