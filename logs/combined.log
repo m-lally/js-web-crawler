@@ -9,3 +9,18 @@
 {"level":"info","message":"Crawl completed: {\"totalPages\":6,\"failedPages\":0,\"totalTime\":2394,\"averageTime\":399}","service":"web-crawler","timestamp":"2025-11-10T20:27:45.478Z"}
 {"level":"info","message":"Starting crawl from: https://m-lally.github.io","service":"web-crawler","timestamp":"2025-11-10T20:28:04.501Z"}
 {"level":"warn","message":"HTTP 404: https://m-lally.github.io/robots.txt","service":"web-crawler","timestamp":"2025-11-10T20:28:04.602Z"}
+{"level":"info","message":"Starting crawl from: https://m-lally.github.io","service":"web-crawler","timestamp":"2026-03-10T22:36:27.828Z"}
+{"level":"warn","message":"HTTP 404: https://m-lally.github.io/robots.txt","service":"web-crawler","timestamp":"2026-03-10T22:36:28.106Z"}
+{"level":"info","message":"Crawl completed: {\"totalPages\":1,\"failedPages\":0,\"totalTime\":2508,\"averageTime\":2508}","service":"web-crawler","timestamp":"2026-03-10T22:36:30.338Z"}
+{"level":"info","message":"Starting crawl from: https://m-lally.github.io","service":"web-crawler","timestamp":"2026-03-10T22:36:46.726Z"}
+{"level":"warn","message":"HTTP 404: https://m-lally.github.io/robots.txt","service":"web-crawler","timestamp":"2026-03-10T22:36:46.802Z"}
+{"level":"info","message":"Crawl completed: {\"totalPages\":1,\"failedPages\":0,\"totalTime\":1247,\"averageTime\":1247}","service":"web-crawler","timestamp":"2026-03-10T22:36:47.976Z"}
+{"level":"info","message":"Starting crawl from: https://m-lally.github.io","service":"web-crawler","timestamp":"2026-03-10T22:38:06.575Z"}
+{"level":"warn","message":"HTTP 404: https://m-lally.github.io/robots.txt","service":"web-crawler","timestamp":"2026-03-10T22:38:06.942Z"}
+{"level":"info","message":"Crawl completed: {\"totalPages\":1,\"failedPages\":0,\"totalTime\":2563,\"averageTime\":2563}","service":"web-crawler","timestamp":"2026-03-10T22:38:09.139Z"}
+{"level":"info","message":"Starting crawl from: https://m-lally.github.io","service":"web-crawler","timestamp":"2026-03-10T22:40:42.042Z"}
+{"level":"warn","message":"HTTP 404: https://m-lally.github.io/robots.txt","service":"web-crawler","timestamp":"2026-03-10T22:40:42.153Z"}
+{"level":"info","message":"Crawl completed: {\"totalPages\":1,\"failedPages\":0,\"totalTime\":1990,\"averageTime\":1990}","service":"web-crawler","timestamp":"2026-03-10T22:40:44.034Z"}
+{"level":"info","message":"Starting crawl from: https://m-lally.github.io","service":"web-crawler","timestamp":"2026-03-10T22:40:57.125Z"}
+{"level":"warn","message":"HTTP 404: https://m-lally.github.io/robots.txt","service":"web-crawler","timestamp":"2026-03-10T22:40:57.208Z"}
+{"level":"info","message":"Crawl completed: {\"totalPages\":1,\"failedPages\":0,\"totalTime\":1505,\"averageTime\":1505}","service":"web-crawler","timestamp":"2026-03-10T22:40:58.632Z"}

@@ -1,5 +1,5 @@
 // app.js
-import WebCrawler from './WebCrawler.js'; // Assuming your provided code is in WebCrawler.js
+import WebCrawler from './webCrawler.js'; // Assuming your provided code is in WebCrawler.js
 
 async function runCrawler() {
   const startUrl = 'https://m-lally.github.io'; // **CHANGE THIS TO A REAL URL YOU WANT TO CRAWL**
@@ -27,7 +27,8 @@ async function runCrawler() {
 
   try {
     const { results, summary } = await crawler.crawl(startUrl);
-    console.log('\nCrawl function returned results and summary:', { resultsCount: results.length, summary });
+    console.log('\nCrawl Results:');
+    console.log(JSON.stringify({ results, summary }, null, 2));
   } catch (error) {
     console.error('Crawler encountered a fatal error:', error);
   }

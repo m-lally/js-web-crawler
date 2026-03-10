@@ -167,12 +167,16 @@ class WebCrawler extends EventEmitter {
         const result = {
           url: response.request.res.responseUrl || url,
           originalUrl: url,
+          language: $('html').attr('lang') || '',
           title: $('title').text().trim() || 'No title',
           description: $('meta[name="description"]').attr('content') || '',
           keywords: $('meta[name="keywords"]').attr('content') || '',
+          meta: this.extractMetaTags($),
           headings: this.extractHeadings($),
           links: this.extractLinks($, url),
           images: this.extractImages($, url),
+          textContent: this.extractTextContent($),
+          resources: this.extractScriptsAndStyles($),
           statusCode: response.status,
           contentLength: response.data.length,
           contentType: contentType,
@@ -258,6 +262,72 @@ class WebCrawler extends EventEmitter {
     });
     
     return images;
+  }
+
+  extractMetaTags($) {
+    const metaTags = {
+      openGraph: {},
+      twitter: {},
+      general: {}
+    };
+
+    $('meta').each((i, el) => {
+      const name = $(el).attr('name');
+      const property = $(el).attr('property');
+      const content = $(el).attr('content');
+
+      if (!content) return;
+
+      if (property && property.startsWith('og:')) {
+        metaTags.openGraph[property.replace('og:', '')] = content;
+      } else if (name && name.startsWith('twitter:')) {
+        metaTags.twitter[name.replace('twitter:', '')] = content;
+      } else if (name) {
+        metaTags.general[name] = content;
+      }
+    });
+
+    return metaTags;
+  }
+
+  extractTextContent($) {
+    // Remove unwanted elements before extracting text
+    const cleanHtml = $.html().replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+                              .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')
+                              .replace(/<svg\b[^<]*(?:(?!<\/svg>)<[^<]*)*<\/svg>/gi, '')
+                              .replace(/<noscript\b[^<]*(?:(?!<\/noscript>)<[^<]*)*<\/noscript>/gi, '');
+    const $clean = cheerio.load(cleanHtml);
+    
+    const rawText = $clean('body').text() || $clean.text();
+    
+    // Clean up whitespace
+    const cleanText = rawText.replace(/\s+/g, ' ').trim();
+    
+    // Extract paragraphs for counting
+    const paragraphsCount = $clean('p').filter((i, el) => $clean(el).text().trim().length > 20).length;
+
+    return {
+      wordCount: cleanText.split(/\s+/).filter(w => w.length > 0).length,
+      preview: cleanText.substring(0, 500) + (cleanText.length > 500 ? '...' : ''),
+      paragraphsCount: paragraphsCount
+    };
+  }
+
+  extractScriptsAndStyles($) {
+    const resources = {
+      scripts: [],
+      stylesheets: []
+    };
+
+    $('script[src]').each((i, el) => {
+      if ($(el).attr('src')) resources.scripts.push($(el).attr('src'));
+    });
+
+    $('link[rel="stylesheet"]').each((i, el) => {
+       if ($(el).attr('href')) resources.stylesheets.push($(el).attr('href'));
+    });
+
+    return resources;
   }
 
   async extractAndFilterUrls(links, baseUrl, depth) {
